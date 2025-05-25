@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ani, in-view 애니메이션 사용세팅</title>
+</head>
+<body>
+<style>
+    .a-up{transform:translateY(25px); opacity:0;}
+    .in-view.a-up{transform:translateY(0px); opacity:1; transition:all 1s;}
+    .a-down{transform:translateY(-25px); opacity:0;}
+    .in-view.a-down{transform:translateY(0px); opacity:1; transition:all 1s;}
+    .a-left{transform:translateX(15px); opacity:0;}
+    .a-left.in-view{transform:translateX(0px); opacity:1; transition:all 1s;}
+    .a-right{transform:translateX(-15px); opacity:0;}
+    .a-right.in-view{transform:translateX(0px); opacity:1; transition:all 1s;}
 
+    .a-:nth-child(1){transition-delay:.1s;}
+    .a-:nth-child(2){transition-delay:.2s;}
+    .a-:nth-child(3){transition-delay:.3s;}
+    .a-:nth-child(4){transition-delay:.4s;}
+    .a-:nth-child(5){transition-delay:.5s;}
+    .a-:nth-child(6){transition-delay:.6s;}
+    .a-:nth-child(7){transition-delay:.7s;}
+    .a-:nth-child(8){transition-delay:.8s;}
+    .a-:nth-child(9){transition-delay:.9s;}
+    .a-:nth-child(10){transition-delay:1s;}
+    .a-:nth-child(11){transition-delay:1.2s;}
+    .a-:nth-child(12){transition-delay:1.3s;}
+    .a-:nth-child(13){transition-delay:1.4s;}
+    .a-:nth-child(14){transition-delay:1.5s;}
+    .a-:nth-child(15){transition-delay:1.6s;}
+</style>
+<div class="ani">
+  * 애니메이션을 넣을 개체에 ani라는 class명 삽입애니메이션을 넣을 개체에 ani라는 class명 삽입
+  * ani 라는 class 명을 넣으면 스크롤 시 해당 개체의 영역에 도달하면 in-view라는 class가 추가됨(스크립트로 자동으로 붙게끔 되어있음)
+  * css설정 시 .ani{나타나기 전} / .ani.in-vew{나타났을 때 모습} 으로 세팅하면 됨
+  * 아래 css는 기본 애니메이션효과(위에서아래, 아래에서위, 시간차별로나타나기 등...)
+</div>
+<script>
+    //스크롤 애니메이션
+    $(function () {
+        var $animation_elements = $('.ani');
+        var $window = $(window);
+
+        function check_if_in_view() {
+            var window_height = $window.height();
+            var window_top_position = $window.scrollTop();
+            var window_bottom_position = (window_top_position + window_height);
+            $.each($animation_elements, function () {
+                var $element = $(this);
+                var element_height = $element.outerHeight();
+                var element_top_position = $element.offset().top + 100;
+                var element_bottom_position = (element_top_position + element_height);
+                //check to see if this current container is within viewport
+                if ((element_bottom_position >= window_top_position) &&
+                    (element_top_position <= window_bottom_position)) {
+                    $element.addClass('in-view');
+                } else {
+                    //$element.removeClass('in-view');
+                }
+            });
+        }
+        $window.on('scroll resize', check_if_in_view);
+        $window.trigger('scroll');
+    });
+</script>
+</body>
+</html>
