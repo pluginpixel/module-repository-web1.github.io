@@ -1,1 +1,309 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로세스디자인 및 오버효과</title>
+</head>
+<body>
+
+<style>
+    header {
+        position: fixed;
+        z-index: 99999;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    header .header_in {
+        position: realtive;
+        display: flex;
+        align-items: center;
+        height: 90px;
+        padding: 0 15px;
+        border-radius: 15px;
+        background-color: #111;
+    }
+
+    header .nav {
+        position: absolute;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10
+    }
+
+    header .nav .dep1 {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    header .nav .dep1>li {
+        position: relative;
+        height: 100%;
+        padding: 0 35px;
+        white-space: nowrap;
+        color: #fff;
+        transition: padding 0.3s;
+    }
+
+    header .nav .dep1>li>a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        font-size: 19px;
+        color: #fff;
+    }
+
+    header .nav .dep1>li>a>span {
+        position: relative;
+    }
+
+    header .nav .dep1>li>a>span::before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #fff;
+        left: 50%;
+        top: 0px;
+        opacity: 0;
+        transform: translate(-50%, 100%);
+        transition: opacity 0.5s ease-in-out, top 0.3s ease-in-out;
+    }
+
+    header .nav .dep1>li>.dep2 {
+        position: absolute;
+        left: 50%;
+        bottom: -0.5em;
+        transform: translate(-50%, 100%);
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        transition-delay: -0.2s;
+    }
+
+    header .nav .dep1>li>.dep2>li>a {
+        font-size: 15px;
+        opacity: 0.35;
+        transition: opacity 0.3s, padding 0.3s;
+        color: #fff;
+    }
+
+    header .nav .dep1>li>.dep2>li>a>span {
+        position: relative;
+    }
+
+    header .nav .dep1>li>.dep2>li>a>span::before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background-color: #fff;
+        left: 0;
+        top: 50%;
+        opacity: 0;
+        transform: translate(100%, -50%);
+        transition: opacity 0.5s ease-in-out, left 0.3s ease-in-out;
+    }
+
+    header .nav .dep1>li>.dep2>li+li {
+        margin-top: 5px;
+    }
+
+    header .gnb_bg {
+        position: absolute;
+        width: 100%;
+        height: 0;
+        bottom: 1px;
+        left: 50%;
+        border-radius: 20px;
+        background: #111;
+        transform: translate(-50%, 100%);
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* header > on 되었을 때 */
+    header.on .nav .dep1>li {
+        padding: 0 55px;
+    }
+
+    header.on .nav .dep1>li>.dep2 {
+        opacity: 1;
+        pointer-events: visible;
+        transition-delay: 0.2s;
+    }
+
+    /* hover 효과 */
+    header .nav .dep1>li:hover>a>span::before {
+        opacity: 1;
+        top: -15px;
+    }
+
+    header .nav .dep1>li>.dep2>li:hover>a {
+        opacity: .8;
+        padding-left: 10px;
+    }
+
+    header .nav .dep1>li>.dep2>li:hover>a>span::before {
+        opacity: 1;
+        left: -15px;
+    }
+</style>
+
+<header class="header">
+    <div class="header_in">
+        <a class="logo" href="/"></a>
+        <nav class="nav">
+            <ul class="dep1">
+                <li>
+                    <a href="#"><span>대메뉴1</span></a>
+                    <ul class="dep2">
+                        <li><a href="#"><span>소메뉴1</span></a></li>
+                        <li><a href="#"><span>소메뉴2</span></a></li>
+                        <li><a href="#"><span>소메뉴3</span></a></li>
+                        <li><a href="#"><span>소메뉴4</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>대메뉴2</span></a>
+                    <ul class="dep2">
+                        <li><a href="#"><span>소메뉴1</span></a></li>
+                        <li><a href="#"><span>소메뉴2</span></a></li>
+                        <li><a href="#"><span>소메뉴3</span></a></li>
+                        <li><a href="#"><span>소메뉴4</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>대메뉴3</span></a>
+                    <ul class="dep2">
+                        <li><a href="#"><span>소메뉴1</span></a></li>
+                        <li><a href="#"><span>소메뉴2</span></a></li>
+                        <li><a href="#"><span>소메뉴3</span></a></li>
+                        <li><a href="#"><span>소메뉴4</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>대메뉴4</span></a>
+                    <ul class="dep2">
+                        <li><a href="#"><span>소메뉴1</span></a></li>
+                        <li><a href="#"><span>소메뉴2</span></a></li>
+                        <li><a href="#"><span>소메뉴3</span></a></li>
+                        <li><a href="#"><span>소메뉴4</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="gnb_bg"></div>
+</header>
+  
+<script>
+    function resizeHandler() {
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+        if (screenWidth < 1240) {
+            //모바일 메뉴 동작
+            $('.header .right_wrap a.ham').click(function () {
+                $('.header .nav').addClass('open');
+                $('html').addClass('scroll_none')
+            });
+
+            $('.header nav .close_btn').click(function () {
+                $('.header .nav').removeClass('open')
+                $('html').removeClass('scroll_none');
+                $('.header nav .dep1 li > a .dep2').slideUp(100);
+            });
+            $('.header .nav .dep1 > li > a').off('click');
+            $('.header .nav .dep1 > li > a').on('click', function (event) {
+                if ($(this).hasClass('on')) {
+                    $('.header .nav .dep1 > li > a').removeClass('on')
+                    $(this).removeClass('on')
+                } else {
+                    $('.header .nav .dep1 > li > a').removeClass('on')
+                    $(this).addClass('on')
+                }
+                var $dep2List = $(this).next('.dep2').find('li');
+                if ($dep2List.length > 0) {
+                    var $dep2 = $(this).siblings('.dep2');
+                    $(this).parents('li').siblings().find('.dep2').slideUp(300);
+                    $dep2.slideToggle(300);
+                    return false
+                }
+
+            });
+
+            $('.header .nav .mo_util .lang .btn').off('click');
+
+            // .lang .btn 클릭 이벤트 설정
+            $('.header .nav .mo_util .lang .btn').on('click', function () {
+                $(this).closest('.lang').toggleClass('open');
+            });
+        } else {
+            document.addEventListener('DOMContentLoaded', function () {
+                // 메뉴 관련 마우스 오버 이벤트
+                $('.header .nav').mouseover(function () {
+
+                    if ($('.all_sch').hasClass('on')) return;
+
+                    $(this).addClass('on');
+                    $('.header').addClass('on');
+
+                    // 높이 계산 및 설정
+                    const dep2Elements = document.querySelectorAll('.header .nav.on .dep2');
+                    const dep1Elements = document.querySelectorAll('.header .nav.on .dep1');
+
+                    let maxHeight = 0;
+
+                    dep2Elements.forEach(element => {
+                        const height = element.offsetHeight;
+                        if (height > maxHeight) {
+                            maxHeight = height;
+                        }
+                    });
+
+                    const dep2BgElement = document.querySelector('.header.on .gnb_bg');
+                    if (dep2BgElement) {
+                        dep2BgElement.style.height = (maxHeight + 60) + 'px';
+                    }
+                    // dep1Elements에 각각 --height를 설정
+                    dep1Elements.forEach(element => {
+                        element.style.setProperty('--height', maxHeight + 'px');
+                    });
+
+                });
+
+                // 마우스 리브 이벤트
+                $('.header').mouseleave(function () {
+                    $(this).removeClass('on');
+                    $('.header').removeClass('on');
+
+                    // 높이 초기화
+                    const dep2BgElement = document.querySelector('.header .gnb_bg');
+                    if (dep2BgElement) {
+                        dep2BgElement.style.height = 0;
+                    }
+                    const dep1Elements = document.querySelectorAll('.header .nav .dep1');
+                    dep1Elements.forEach(element => {
+                        element.style.setProperty('--height', 'auto');
+                    });
+                });
+            });
+            $('.header .nav .mo_util .lang .btn').off('click');
+        }
+    }
+
+    window.addEventListener("resize", resizeHandler);
+    resizeHandler();
+</script>
+</body>
+</html>
