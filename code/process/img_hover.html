@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로세스디자인 및 오버효과</title>
+</head>
+<body>
 
+<style>
+.proc-list{position: relative; width: 100%; display: flex; flex-wrap: wrap; gap: 20px;}
+.proc-list .card{position: relative; width:calc((100% - 40px) / 3); background-color:#F5F5F5; border-radius:10px; height:130px; overflow:hidden;padding: 0 30px; }
+.proc-list .card .txt-box{position: relative; width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: center; z-index:1;}
+.proc-list .card .txt-box h4{font-size:20px; font-weight:700;}
+.proc-list .card .txt-box p{font-size:32px; font-weight:700;}
+.proc-list .card .txt-box p small{font-size:14px; font-weight:300; margin-left:5px;}
+
+.proc-list .card .effect {height:100%; left:0; position:absolute; top:0; width:100%; }
+.proc-list .card .effect span { height:100%; opacity:0; }
+
+.proc-list .card .effect .img-box{position: relative; display:inline-block; transform:translate3d(-100%,0,0); transition:0.4s; width:85%; overflow: hidden;}
+.proc-list .card .effect .img-box::before{position:absolute; content:''; display: block; width:50%; height: 100%; background:#f5f5f5; transform:skewX(-55deg); right:-20%; top:0;}
+.proc-list .card .effect .img-box img{width:100%;}
+
+.proc-list .card .effect .mask {position:absolute; transform:translate3d(100%,0,0); transition:0.4s; top:0; right:0; width:60%; height: 100%; background: #05141f; transform:translate3d(100%,0,0) skewX(-55deg);}
+
+.proc-list .card:hover .txt-box{ color:#fff; }
+.proc-list .card:hover .effect .img-box { opacity:1; transform:translate3d(0,0,0); }
+.proc-list .card:hover .effect .mask{ opacity:1; transform:translate3d(30%,0,0) skewX(-55deg); }
+
+ </style>
+
+    <ul class="proc-list">
+        <li class="card">
+            <div class="txt-box">
+                <h4>제목작성</h4>
+                <p>26<small>process</small></p>
+            </div>
+            <div class="effect">
+                <span class="img-box">
+                    <img src="https://img.freepik.com/free-photo/beautiful-scenery-river-surrounded-by-greenery-forest_181624-40482.jpg?uid=R199945991&ga=GA1.1.1641462375.1747111420&semt=ais_hybrid&w=740" alt="" class="back">
+                </span>
+                <span class="mask"></span>
+            </div>
+        </li>
+        <li class="card">
+            <div class="txt-box">
+                <h4>제목작성</h4>
+                <p>26<small>process</small></p>
+            </div>
+            <div class="effect">
+                <span class="img-box">
+                    <img src="https://img.freepik.com/free-photo/pathway-middle-green-leafed-trees-with-sun-shining-through-branches_181624-4539.jpg?uid=R199945991&ga=GA1.1.1641462375.1747111420&semt=ais_hybrid&w=740" alt="" class="back">
+                </span>
+                <span class="mask"></span>
+            </div>
+        </li>
+        <li class="card">
+            <div class="txt-box">
+                <h4>제목작성</h4>
+                <p>26<small>process</small></p>
+            </div>
+            <div class="effect">
+                <span class="img-box">
+                    <img src="https://img.freepik.com/free-photo/low-angle-view-modern-ceiling_1359-960.jpg?uid=R199945991&ga=GA1.1.1641462375.1747111420&semt=ais_hybrid&w=740" alt="" class="back">
+                </span>
+                <span class="mask"></span>
+            </div>
+        </li>
+        <li class="card">
+            <div class="txt-box">
+                <h4>제목작성</h4>
+                <p>26<small>process</small></p>
+            </div>
+            <div class="effect">
+                <span class="img-box">
+                    <img src="https://img.freepik.com/free-photo/building-with-steel-structure_1127-2009.jpg?uid=R199945991&ga=GA1.1.1641462375.1747111420&semt=ais_hybrid&w=740" alt="" class="back">
+                </span>
+                <span class="mask"></span>
+            </div>
+        </li>
+    </ul>
+</body>
+</html>
