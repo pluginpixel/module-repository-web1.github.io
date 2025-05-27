@@ -1,15 +1,147 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>저장소</title>
-    <link rel="stylesheet" type="text/css" href="default.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>plug in pixel 저장소 메인</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="https://pluginpixel.github.io/module-repository-web1.github.io/css/default.css">
 </head>
+<body>
+
+
+<style>
+body{
+    font-size: 20px;
+}
+#plug{
+    position: relative;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 5% 0;
+}
+#plug > h2{
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+#plug > h2 small{
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: block;
+    margin-top: .3rem;
+    opacity: .8;
+}
+#plug .plug_wr{
+    position: relative;
+    margin-top: 5rem;
+}
+#plug .plug_wr > h5{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+#plug ul.plug-list{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 2rem;
+}
+#plug ul.plug-list > li{
+    position:relative;
+    width:49%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 20px;
+    overflow:hidden;
+}
+#plug ul.plug-list > li > p{
+    width: 100%;
+    padding: 0 1rem 1rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    border-bottom:1px solid #c6c6c6;
+    box-sizing: border-box;
+    text-align: center;
+}
+#plug ul.plug-list > li .img-box{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    border-radius: 12px;
+}
+#plug ul.plug-list > li .img-box a{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+#plug ul.plug-list > li .img-box img{
+    width:100%;
+    transition: all .4s ease;
+}
+#plug ul.plug-list > li .img-box:hover img{
+    transform: scale(1.05);
+    transition: all .4s ease;
+}
+</style>
 
     
-<body>
+<section id="plug">
+    <h2>플러그인픽셀 저장소 목록입니다. <small>썸네일을 클릭하시면 해당 코드의 저장소로 이동됩니다.</small></h2>
+
+    <!-- 연혁 -->
+    <div class="plug_wr">
+        <h5>연혁 <small>code/history</small> </h5>
+        <ul class="plug-list">
+            <li>
+                <p>년도fix 및 자동카운트 + 상단탭</p>
+                <div class="img-box">
+                    <a href="https://pluginpixel.github.io/module-repository-web1.github.io/code/history/count_fix_tab.html"></a>
+                    <img src="https://pluginpixel.github.io/module-repository-web1.github.io/images/pluginpixel/thum01.png">
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 상단메뉴 -->
+    <div class="plug_wr">
+        <h5>상단메뉴 <small>code/navi_menu</small> </h5>
+        <ul class="plug-list">
+            <li>
+                <p>마우스 오버 > 2차메뉴 활성화</p>
+                <div class="img-box">
+                    <a href="https://pluginpixel.github.io/module-repository-web1.github.io/code/navi_menu/2nd_menu.html"></a>
+                    <img src="https://pluginpixel.github.io/module-repository-web1.github.io/images/pluginpixel/thum02.png">
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 프로세스 -->
+    <div class="plug_wr">
+        <h5>프로세스 <small>code/process</small> </h5>
+        <ul class="plug-list">
+            <li>
+                <p>마우스 오버 > 이미지썸네일노출</p>
+                <div class="img-box">
+                    <a href="https://pluginpixel.github.io/module-repository-web1.github.io/code/process/img_hover.html"></a>
+                    <img src="https://pluginpixel.github.io/module-repository-web1.github.io/images/pluginpixel/thum03.png">
+                </div>
+            </li>
+        </ul>
+    </div>
     
+</section>
+
+
 </body>
 </html>
