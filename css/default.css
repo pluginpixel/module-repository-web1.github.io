@@ -26,6 +26,7 @@ body {
     width: 1920px; /* 고정 너비 설정 */
     overflow-x: hidden; /* 가로 스크롤 방지 */
     margin: 0 auto;
+    max-width:90%; /* 깃허브용 가로 꽉참방지 */
 }
 :root{
     --pink001:#ea7480;
