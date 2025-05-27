@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스와이퍼슬라이더 + 원형 progress + 컨트롤버튼</title>
+  
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="https://pluginpixel.github.io/module-repository-web1.github.io/css/default.css">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+:root{--primary:#104971;--k-font:'Pretendard';--e-font:'Outfit'}
+
+#mainVisual{overflow:hidden;position:relative;width:100%;height:800px;background:#222;font-family:var(--e-font),var(--k-font)}
+
+/* 텍스트 */
+#mainVisual{}
+#mainVisual .main_txt{display:flex;flex-flow:column;position:absolute;left:80px;top:25%;z-index:10;color:#fff}
+#mainVisual .main_txt .btxt{font-size:62px;font-weight:600;line-height:1.15;white-space:pre-line}
+#mainVisual .main_txt .stxt{margin-top:30px;font-size:18px;line-height:1.8;white-space:pre-line}
+
+/* 이미지 */
+#mainVisual .main_slide{height:100%}
+#mainVisual ul{z-index:1;height:100%}
+#mainVisual ul li{overflow:hidden;height:100%}
+#mainVisual ul li:after{display:block;content:"";position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.25)}
+#mainVisual ul li .bg{width:100%;height:100%;background:url(	https://co1124.shiningcorp.com/sh_img/index/main_banner/main_img1.jpg) center no-repeat;background-size:cover}
+#mainVisual ul li .bg02{background-image:url(	https://co1124.shiningcorp.com/sh_img/index/main_banner/main_img2.jpg)}
+#mainVisual ul li .bg03{background-image:url(	https://co1124.shiningcorp.com/sh_img/index/main_banner/main_img3.jpg)}
+
+/* 컨트롤 */
+#mainVisual .controls{display:flex;align-items:center;gap:35px;margin-top:60px}
+#mainVisual .circle{position:relative}
+#mainVisual .circle .autoplay-progress{display:flex;align-items:center;justify-content:center;position:relative;width:60px;height:60px}
+#mainVisual .circle .autoplay-progress svg{z-index:10;width:100%;height:100%;stroke-width:2px;stroke:#fff;fill:none;stroke-dashoffset:calc(125.6 * (1 - var(--progress)));stroke-dasharray:125.6;transform:rotate(-90deg)}
+#mainVisual .circle .autoplay-progress .bg{position:absolute;width:54px;height:54px;border-radius:50%;border:3px solid rgba(255,255,255,.5)}
+#mainVisual .circle .play div{position:absolute;left:50%;top:50%;z-index:10;transform:translate(-50%,-50%)}
+#mainVisual .circle .play span{cursor:pointer;font-variation-settings:'FILL' 1,'wght' 300,'GRAD' 0,'opsz' 40;font-size:18px}
+#mainVisual .circle .play div.swiper-pause{display:block}
+#mainVisual .circle .play div.swiper-play{display:none}
+#mainVisual .circle .play.on div.swiper-pause{display:none}
+#mainVisual .circle .play.on div.swiper-play{display:block}
+#mainVisual .arrow{display:flex;align-items:center;gap:25px}
+#mainVisual .arrow > span{display:flex}
+#mainVisual .arrow i{cursor:pointer;width:40px;opacity:.6;transition:all .2s}
+#mainVisual .arrow .pager{display:flex;align-items:center;justify-content:center;gap:10px;width:43px;font-size:15px;font-weight:600}
+#mainVisual .arrow .i:hover{opacity:1}
+
+/* 스크롤다운 */
+#mainVisual .scroll{position:absolute;z-index:10;right:80px;bottom:80px;padding:40px 15px 0 0;font-size:12px;font-weight:600;color:#fff}
+#mainVisual .scroll span{display:block;position:absolute;right:0;width:5px;height:5px;border-radius:50%;background:#fff;transition:all .2s;animation:scr_down 3s infinite}
+@keyframes scr_down{0%{top:0;opacity:0}20%{opacity:1}100%{top:90%;opacity:0}}
+
+</style>
+
+<div id="mainVisual">
+	<div class="main_txt">
+        <p class="btxt">Your Global 
+        Manufacturing Partner</p>
+        <div class="stxt">첨단 기술과 전문 지식을 바탕으로 고객의 요구를 충족시키고
+        더 나은 세상을 위해 노력합니다.</div>
+        <div class="controls">
+            <div class="circle">
+                <div class="autoplay-progress">
+                    <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"></circle></svg>
+                    <span class="bg"></span>
+                </div>
+                <div class="play">
+                    <div class="swiper-pause"><span class="material-symbols-outlined">pause</span></div>
+                    <div class="swiper-play"><span class="material-symbols-outlined">play_arrow</span></div>
+                </div>
+            </div>
+            <div class="arrow">
+                <span class="prev"><i class="material-symbols-outlined">west</i></span>
+                <div class="pager"></div>        
+                <span class="next"><i class="material-symbols-outlined">east</i></span>
+            </div>        
+        </div>
+    </div>
+    <div class="main_slide swiper-container">
+        <ul class="swiper-wrapper">
+            <li class="swiper-slide"><div data-swiper-parallax-x="40%" class="bg bg01"></div></li> 
+            <li class="swiper-slide"><div data-swiper-parallax-x="40%" class="bg bg02"></div></li> 
+            <li class="swiper-slide"><div data-swiper-parallax-x="40%" class="bg bg03"></div></li> 
+        </ul>
+    </div>
+    <div class="scroll">SCROLL DOWN<span></span></div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+    const progressCircle = document.querySelector("#mainVisual .autoplay-progress svg");
+    const progressContent = document.querySelector("#mainVisual .autoplay-progress span");
+    var mainSwiper = new Swiper(".main_slide", {
+        loop: true,
+        speed:1200,
+        parallax: true,
+        slideActiveClass: 'on',
+        autoplay: {
+            delay: 3200,
+            disableOnInteraction: false,
+        },
+        pagination:{
+            el:"#mainVisual .pager",
+            type:"fraction",
+        },    
+        navigation: {
+            nextEl: '#mainVisual .next',
+            prevEl: '#mainVisual .prev',
+        },
+        on:{
+            autoplayTimeLeft(s, time, progress) {
+            progressCircle.style.setProperty("--progress", 1 - progress);
+            }
+        }    
+    });
+    $('#mainVisual .swiper-pause').click(function(){
+        mainSwiper.autoplay.stop();
+    });
+    $('#mainVisual .swiper-play').click(function(){
+        mainSwiper.autoplay.start();
+    });
+    $(function() { 
+        $("#mainVisual .play").click(function() {
+            $(this).toggleClass("on");
+        });
+    });
+</script>
+</body>
+</html>
