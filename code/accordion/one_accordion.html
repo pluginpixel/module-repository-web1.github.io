@@ -92,7 +92,7 @@
     </div>
   </div>
   <div class="anw">
-    <span>첫번째 질문에 해당하는 내용</span>
+    <span>두번째 질문에 해당하는 내용</span>
   </div>
 
   
@@ -105,7 +105,7 @@
     </div>
   </div>
   <div class="anw">
-    <span>첫번째 질문에 해당하는 내용</span>
+    <span>세번째 질문에 해당하는 내용</span>
   </div>
 </section>
 
@@ -113,7 +113,7 @@
   $(".que").click(function() {
     $(this).next(".anw").stop().slideToggle(300);
     $(this).toggleClass('on').siblings().removeClass('on');
-    $(this).next(".anw").siblings(".anw").slideUp(300); // 1개씩 펼치기
+    $(this).next(".anw").siblings(".anw").slideUp(300);
   });
 </script>
 </body>
