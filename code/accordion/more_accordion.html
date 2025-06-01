@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여러개 펼쳐는 아코디언메뉴</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <link rel="stylesheet" href="https://pluginpixel.github.io/module-repository-web1.github.io/css/default.css">
+
+  <!-- remixicon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<style>
+
+.que{
+	position: relative;
+	padding: 17px 0;
+	cursor: pointer;
+	font-size: 14px;
+	border-bottom: 1px solid #dddddd;
+}	
+.que::before{
+	display: inline-block;
+	content: 'Q';
+	font-size: 14px;
+	color: #006633;
+	margin: 0 5px;
+}
+.que.on > span{
+	font-weight: bold;
+	color: #006633;	
+}
+.anw {
+	display: none;
+    overflow: hidden;
+	font-size: 14px;
+	background-color: #f4f4f2;
+	padding: 27px 0;
+}
+.anw::before {
+	display: inline-block;
+	content: 'A';
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	margin: 0 5px;
+}
+.arrow-wrap {
+  position: absolute;
+  top:50%; right: 10px;
+  transform: translate(0, -50%);
+}
+.que .arrow-top {
+  display: none;
+}
+.que .arrow-bottom {
+  display: block;
+}
+.que.on .arrow-bottom {
+  display: none;
+}
+.que.on .arrow-top {
+  display: block; 
+}
+</style>
+
+
+<section id="Accordion_wrap">
+  <!-- 질문1 -->
+  <div class="que">
+    <span>첫번째 질문</span>
+    <div class="arrow-wrap">
+      <span class="arrow-top">↑</span>
+      <span class="arrow-bottom">↓</span>
+    </div>
+  </div>
+  <div class="anw">
+    <span>첫번째 질문에 해당하는 내용</span>
+  </div>
+  
+  <!-- 질문2 -->
+  <div class="que">
+    <span>두번째 질문</span>
+    <div class="arrow-wrap">
+      <span class="arrow-top">↑</span>
+      <span class="arrow-bottom">↓</span>
+    </div>
+  </div>
+  <div class="anw">
+    <span>두번째 질문에 해당하는 내용</span>
+  </div>
+
+  <!-- 질문3 -->
+  <div class="que">
+    <span>세번째 질문</span>
+    <div class="arrow-wrap">
+      <span class="arrow-top">↑</span>
+      <span class="arrow-bottom">↓</span>
+    </div>
+  </div>
+  <div class="anw">
+    <span>세번째 질문에 해당하는 내용</span>
+  </div>
+
+  <!-- 질문4 -->
+  <div class="que">
+    <span>네번째 질문</span>
+    <div class="arrow-wrap">
+      <span class="arrow-top">↑</span>
+      <span class="arrow-bottom">↓</span>
+    </div>
+  </div>
+  <div class="anw">
+    <span>네번째 질문에 해당하는 내용</span>
+  </div>
+
+  <!-- 질문5 -->
+  <div class="que">
+    <span>다섯번째 질문</span>
+    <div class="arrow-wrap">
+      <span class="arrow-top">↑</span>
+      <span class="arrow-bottom">↓</span>
+    </div>
+  </div>
+  <div class="anw">
+    <span>다섯번째 질문에 해당하는 내용</span>
+  </div>
+</section>
+
+<script>
+  $(".que").click(function() {
+    $(this).next(".anw").stop().slideToggle(300);
+    $(this).toggleClass('on');
+  });
+</script>
+</body>
+
+</html>
