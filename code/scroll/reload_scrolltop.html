@@ -1,0 +1,42 @@
+<!-- 새로고침 시 최상단 부드럽게 스크롤 -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 30);
+});
+</script>
+
+<!-- 새로고침 시 최상단 부드럽게 스크롤 : 페이지 지정 -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // 원하는 경로로 변경
+  if (window.location.pathname.includes('/218')) {
+    setTimeout(function() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 20); // 약간의 딜레이로 렌더 완료 후 작동   }
+});
+</script>
+
+
+<!-- 새로고침 시 최상단 이동 -->
+<script>
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+document.addEventListener("DOMContentLoaded", function() {
+  if (window.location.pathname.includes('/about')) {
+    window.scrollTo(0, 0);
+  }
+});
+</script>
+
+<!-- 새로고침 시 최상단 이동 : 페이지 지정 -->
+<script>
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+document.addEventListener("DOMContentLoaded", function() {
+  window.scrollTo(0, 0);
+});
+</script>
