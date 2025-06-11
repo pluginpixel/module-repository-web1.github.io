@@ -16,8 +16,24 @@
 <body>
 
 반응형 진행 시, 특정 영역에서만 높이값이 지정되지 않는 경우가 있습니다
-이때 아임웹 디자인모드에서 위 스타일코드를 추가하면 됩니다.
-전체 페이지에 모두 적용해야할때는 섹션반복 기능을 이용해 추가하거나 각 페이지별로 추가해주어야 합니다.
-** SEO영역에 추가할 시 적용되지않는 오류있음
+이때 아임웹 관리자모드 > SEO등록을 통해 위 스타일코드를 추가하면 됩니다.
+
+그래도 적용이 되지않을 경우에는 아래 스크립트와 높이 100vh가 필요한 영역에 아래의 스타일 코드를 추가해주시면 됩니다.
+
+<style>
+.100vh_class{
+  min-height: var(--app-height);
+  height: var(--app-height);
+}
+</style>
+<script>
+function updateAppHeight() {
+  document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
+}
+window.addEventListener('resize', updateAppHeight);
+window.addEventListener('orientationchange', updateAppHeight);
+updateAppHeight();
+</script>
+  
 </body>
 </html>
